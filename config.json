@@ -1,0 +1,518 @@
+{
+  "version": 1,
+  "device": {
+    "backend": "adb",
+    "adb_path": "F:\\Program Files\\Netease\\MuMu\\nx_main\\adb.exe",
+    "serial": "127.0.0.1:16384",
+    "connect": "",
+    "auto_display": true,
+    "display_id": "",
+    "auto_detect": true,
+    "detect_timeout": 20,
+    "auto_launch": false,
+    "launch_wait": 120,
+    "emulator_index": 0,
+    "expected_size": [
+      1280,
+      720
+    ]
+  },
+  "runtime": {
+    "poll_interval": 0.35,
+    "flow_cooldown": 0.25,
+    "dry_run": false,
+    "humanize": true,
+    "tap_jitter": 3,
+    "click_delay": [
+      0.05,
+      0.14
+    ],
+    "max_unknown": 10,
+    "unknown_wait": 1.2,
+    "max_minutes": 0,
+    "max_steps": 0,
+    "save_debug_frames": true,
+    "report": true,
+    "log_dir": "C:\\Users\\34333\\AppData\\Local\\FGOStoryBot\\logs",
+    "skip_story": true
+  },
+  "vision": {
+    "min_score": 0.86,
+    "work_scale": 0.35,
+    "scales": [
+      1.0
+    ],
+    "color_tolerance": 60
+  },
+  "templates": {
+    "dir": "C:\\Users\\34333\\AppData\\Local\\FGOStoryBot\\templates",
+    "meta": "templates.json"
+  },
+  "scene": {
+    "enabled": true,
+    "threshold": 0.88,
+    "margin": 0.05,
+    "auto_learn": true
+  },
+  "loop": {
+    "mode": "story",
+    "farm_node_tpl": "",
+    "farm_node_point": ""
+  },
+  "ap": {
+    "apple_order": [
+      "gold",
+      "silver",
+      "bronze",
+      "quartz"
+    ],
+    "apple_points": {},
+    "apple_ap": {
+      "gold": 0,
+      "silver": 0,
+      "bronze": 0,
+      "quartz": 0
+    },
+    "max_per_run": 0,
+    "keep_min": 0
+  },
+  "battle": {
+    "attack_tpl": "t_attack",
+    "cards_tpl": "t_cards",
+    "np_tpl": "t_np",
+    "use_np": false,
+    "plan": "",
+    "skill_grid": {
+      "x": [
+        0.19,
+        0.3,
+        0.41
+      ],
+      "y": [
+        0.62,
+        0.72,
+        0.82
+      ]
+    },
+    "np_grid": {
+      "x": [
+        0.19,
+        0.3,
+        0.41
+      ],
+      "y": 0.9
+    },
+    "card_mode": "auto",
+    "card_slots": [
+      [
+        0.2,
+        0.8
+      ],
+      [
+        0.39,
+        0.8
+      ],
+      [
+        0.58,
+        0.8
+      ]
+    ],
+    "card_box": [
+      0.105,
+      0.24
+    ],
+    "sample": [
+      0.08,
+      0.04,
+      0.92,
+      0.4
+    ],
+    "hsv": {
+      "buster": [
+        [
+          0,
+          120,
+          90,
+          15,
+          255,
+          255
+        ],
+        [
+          340,
+          120,
+          90,
+          360,
+          255,
+          255
+        ]
+      ],
+      "arts": [
+        [
+          195,
+          90,
+          80,
+          260,
+          255,
+          255
+        ]
+      ],
+      "quick": [
+        [
+          95,
+          90,
+          70,
+          175,
+          255,
+          255
+        ]
+      ]
+    },
+    "priority": [
+      "buster",
+      "arts",
+      "quick"
+    ],
+    "min_classify": 0.35,
+    "pick_delay": [
+      0.25,
+      0.45
+    ],
+    "wait_after_attack": 0.7,
+    "wait_cards_timeout": 3.0,
+    "wait_after_pick": 0.8,
+    "skill_plan": {},
+    "np_point": [
+      0.55,
+      0.55
+    ]
+  },
+  "params": {
+    "popup_ok": [
+      0.5,
+      0.86
+    ],
+    "dialog_tap": [
+      0.5,
+      0.55
+    ],
+    "continue_decline": [
+      0.35,
+      0.62
+    ],
+    "support_start": [
+      0.86,
+      0.92
+    ],
+    "party_start": [
+      0.86,
+      0.92
+    ],
+    "nav": {
+      "terminal": [
+        0.5,
+        0.93
+      ],
+      "main_record": [
+        0.5,
+        0.32
+      ],
+      "chapter": [
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "node": [
+        0.5,
+        0.62
+      ]
+    }
+  },
+  "recovery": {
+    "actions": [
+      {
+        "tap_xy": [
+          0.5,
+          0.55
+        ]
+      },
+      {
+        "wait": 0.8
+      },
+      {
+        "tap_xy": [
+          0.06,
+          0.06
+        ]
+      },
+      {
+        "wait": 0.8
+      }
+    ],
+    "back_after": 4
+  },
+  "flows": [
+    {
+      "name": "连接重试",
+      "cooldown": 3.0,
+      "detect": {
+        "any": [
+          "t_conn_retry"
+        ]
+      },
+      "actions": [
+        {
+          "tap": "t_conn_retry"
+        },
+        {
+          "wait": 2.0
+        }
+      ]
+    },
+    {
+      "name": "升级弹窗",
+      "cooldown": 1.0,
+      "detect": {
+        "any": [
+          "t_levelup"
+        ]
+      },
+      "actions": [
+        {
+          "tap": "t_levelup",
+          "fallback": "popup_ok"
+        },
+        {
+          "wait": 0.8
+        }
+      ]
+    },
+    {
+      "name": "通用确认弹窗",
+      "cooldown": 1.0,
+      "detect": {
+        "any": [
+          "t_confirm_ok"
+        ]
+      },
+      "actions": [
+        {
+          "tap": "t_confirm_ok",
+          "fallback": "popup_ok"
+        },
+        {
+          "wait": 0.7
+        }
+      ]
+    },
+    {
+      "name": "AP不足",
+      "cooldown": 2.0,
+      "detect": {
+        "any": [
+          "t_ap_restore"
+        ]
+      },
+      "actions": [
+        {
+          "call": "use_apple"
+        },
+        {
+          "wait": 1.2
+        }
+      ]
+    },
+    {
+      "name": "剧情跳过确认",
+      "cooldown": 1.0,
+      "detect": {
+        "any": [
+          "t_skip_confirm"
+        ]
+      },
+      "actions": [
+        {
+          "tap": "t_skip_confirm"
+        },
+        {
+          "wait": 0.7
+        }
+      ]
+    },
+    {
+      "name": "剧情跳过",
+      "cooldown": 1.0,
+      "detect": {
+        "any": [
+          "t_skip"
+        ]
+      },
+      "actions": [
+        {
+          "tap": "t_skip"
+        },
+        {
+          "wait": 0.7
+        }
+      ]
+    },
+    {
+      "name": "剧情对话",
+      "detect": {
+        "any": [
+          "t_dialog"
+        ]
+      },
+      "actions": [
+        {
+          "tap_until_gone": {
+            "tpl": "t_dialog",
+            "point": "dialog_tap",
+            "interval": 0.45,
+            "max": 400,
+            "until_any": [
+              "t_stage_select",
+              "t_result_continue",
+              "t_attack",
+              "t_party_start"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "战斗回合",
+      "detect": {
+        "any": [
+          "t_attack"
+        ]
+      },
+      "actions": [
+        {
+          "call": "battle_attack"
+        }
+      ]
+    },
+    {
+      "name": "选卡界面",
+      "detect": {
+        "any": [
+          "t_cards"
+        ]
+      },
+      "actions": [
+        {
+          "call": "pick_cards"
+        }
+      ]
+    },
+    {
+      "name": "战斗开始",
+      "cooldown": 1.5,
+      "detect": {
+        "any": [
+          "t_battle_start"
+        ]
+      },
+      "actions": [
+        {
+          "tap": "t_battle_start"
+        },
+        {
+          "wait": 1.5
+        }
+      ]
+    },
+    {
+      "name": "支援选择",
+      "cooldown": 1.5,
+      "detect": {
+        "any": [
+          "t_support_start"
+        ]
+      },
+      "actions": [
+        {
+          "tap": "t_support_start",
+          "fallback": "support_start"
+        },
+        {
+          "wait": 1.5
+        }
+      ]
+    },
+    {
+      "name": "队伍确认",
+      "cooldown": 1.5,
+      "detect": {
+        "any": [
+          "t_party_start"
+        ]
+      },
+      "actions": [
+        {
+          "tap": "t_party_start",
+          "fallback": "party_start"
+        },
+        {
+          "wait": 1.5
+        }
+      ]
+    },
+    {
+      "name": "战利品结算",
+      "cooldown": 1.0,
+      "detect": {
+        "any": [
+          "t_result_continue"
+        ]
+      },
+      "actions": [
+        {
+          "tap": "t_result_continue"
+        },
+        {
+          "wait": 1.2
+        },
+        {
+          "call": "record_result"
+        }
+      ]
+    },
+    {
+      "name": "关卡列表",
+      "cooldown": 0.8,
+      "detect": {
+        "any": [
+          "t_stage_select"
+        ]
+      },
+      "actions": [
+        {
+          "call": "pick_node"
+        },
+        {
+          "wait": 1.2
+        }
+      ]
+    },
+    {
+      "name": "主界面",
+      "cooldown": 0.8,
+      "detect": {
+        "any": [
+          "t_home"
+        ]
+      },
+      "actions": [
+        {
+          "tap": "t_terminal",
+          "fallback": "nav.terminal"
+        },
+        {
+          "wait": 1.2
+        }
+      ]
+    }
+  ]
+}
